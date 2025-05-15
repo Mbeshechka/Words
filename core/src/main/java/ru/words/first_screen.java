@@ -9,12 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
 public class first_screen implements  Screen{
-    button btn;
-    button btn2;
-    button btn3;
-    button btn4;
-    button btn5;
-    button btn6;
     Main main;
 
     private Texture d13,bk,rand,on,off,c1,c2,ny,muz,mus;
@@ -34,11 +28,6 @@ public class first_screen implements  Screen{
         camera = main.camera;
         touch = main.touch;
         font = main.font;
-        btn6 = new button(font,"Назад",0,1600);
-        btn = new button(font,"second_screen",150,1000);
-        btn2 = new button(font,"Случайное слово",150,1300);
-        btn3 = new button(font,"",150,700);
-        btn4 = new button(font,"fourth_screen",150,400);
         d13 = new Texture("bg.jpg");
         bk = new Texture("back.png");
         rand = new Texture("nadpis.png");

@@ -18,12 +18,6 @@ import java.util.stream.Collectors;
 
 
 public class fourth_Screen implements  Screen{
-    button btn;
-    button btn2;
-    button btn3;
-    button btn4;
-    button btn5;
-    button btn6;
     Main main;
     float timeCount = 0;
     final float timerInterval = 1.5f;
@@ -63,11 +57,6 @@ public class fourth_Screen implements  Screen{
         camera = main.camera;
         touch = main.touch;
         font = main.font;
-        btn6 = new button(font,"Назад",0,1600);
-        btn = new button(font,"second_screen",150,1000);
-        btn2 = new button(font,"first_screen",150,1300);
-        btn3 = new button(font,"third_screen",150,700);
-        btn4 = new button(font,"fourth_screen",150,400);
         d12 = new Texture("bg.jpg");
         box = new Texture("box.png");
         bk = new Texture("back.png");

@@ -11,12 +11,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
 public class Pause_screen implements  Screen{
-    button btn;
-    button btn2;
-    button btn3;
-    button btn4;
-    button btn5;
-    button btn6;
     Main main;
     private Texture d1,bk,ab;
     public SpriteBatch batch;
@@ -34,12 +28,7 @@ public class Pause_screen implements  Screen{
         camera = main.camera;
         touch = main.touch;
         font = main.font;
-        btn6 = new button(font,"Назад",0,1600);
-        btn = new button(font,"second_screen",150,1000);
-        btn2 = new button(font,"first_screen",150,1300);
-        btn3 = new button(font,"third_screen",150,700);
-        btn4 = new button(font,"fourth_screen",150,400);
-        d1 = new Texture("bg.jpg");
+       d1 = new Texture("bg.jpg");
         bk = new Texture("back.png");
         ab = new Texture("about.png");
 

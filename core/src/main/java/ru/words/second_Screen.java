@@ -12,12 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 
 public class second_Screen implements  Screen{
-    button btn;
-    button btn2;
-    button btn3;
-    button btn4;
-    button btn5;
-    button btn6;
     Main main;
     int x1,y1;
     private Texture d11,bk,joj;
@@ -42,11 +36,6 @@ public class second_Screen implements  Screen{
         camera = main.camera;
         touch = main.touch;
         font = main.font;
-        btn6 = new button(font,"назад",0,1600);
-        btn = new button(font,"second_screen",150,1000);
-        btn2 = new button(font,"first_screen",150,1300);
-        btn3 = new button(font,"third_screen",150,700);
-        btn4 = new button(font,"fourth_screen",150,400);
         d11 = new Texture("bg.jpg");
         bk = new Texture("back.png");
         joj = new Texture("zsz.png");

@@ -3,6 +3,7 @@ package ru.words;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -85,9 +86,11 @@ public class Main extends Game {
         endGameScreen = new End_game_screen(this);
         led = new LeaderBoard(this,startGame2);
         startGame = startGame2;
+        FileHandle file =  Gdx.files.external("your data.txt"); // local - для файлов в приватной директории приложения
+        file.writeString("", false);
 
 
-        fileString2 = Gdx.files.internal("your data.txt").readString();
+        fileString2 = Gdx.files.external("your data.txt").readString();
         System.out.println(fileString2);
 
         if (fileString2.isEmpty()){
@@ -98,7 +101,7 @@ public class Main extends Game {
             name = fileString2.split(" ")[0];
         }
         whichSc = 0;
-        fileString2 = Gdx.files.internal("your data.txt").readString();
+        fileString2 = Gdx.files.external("your data.txt").readString();
         System.out.println(fileString2);
 
         if (fileString2.isEmpty()){

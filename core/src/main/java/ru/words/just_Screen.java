@@ -12,13 +12,6 @@ import com.sun.jdi.FloatValue;
 import java.util.Collections;
 
 public class just_Screen implements  Screen{
-    button btn;
-    button btn2;
-    button btn3;
-    button btn4;
-    button btn5;
-    button Menu;
-
     Main main;
     public SpriteBatch batch;
     public OrthographicCamera camera;
@@ -41,17 +34,13 @@ public class just_Screen implements  Screen{
         ran = main.random_word;
 
 
-        btn = new button(font,"Настройки",300,1100);
-        btn2 = new button(font,"Играть",300,1300);
-        btn3 = new button(font,"Об игре",300,900);
-        btn4 = new button(font,"Выйти",300,700);
         led = new Texture("leader.png");
         inf = new Texture("inf.png");
         sett = new Texture("settings.png");
         ex = new Texture("exit.png");
         d1 = new Texture("bg.jpg");
         pl = new Texture("play.png");
-        Menu = new button(font,"Menu",150,1300);
+
 
 
     }

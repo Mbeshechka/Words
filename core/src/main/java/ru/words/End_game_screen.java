@@ -14,12 +14,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class End_game_screen implements  Screen{
-    button btn;
-    button btn2;
-    button btn3;
-    button btn4;
-    button btn5;
-    button btn6;
     Main main;
     private Texture d1,bk,ab;
     public SpriteBatch batch;
@@ -38,11 +32,6 @@ public class End_game_screen implements  Screen{
         camera = main.camera;
         touch = main.touch;
         font = main.font;
-        btn6 = new button(font,"Назад",0,1600);
-        btn = new button(font,"second_screen",150,1000);
-        btn2 = new button(font,"first_screen",150,1300);
-        btn3 = new button(font,"third_screen",150,700);
-        btn4 = new button(font,"fourth_screen",150,400);
         d1 = new Texture("bg.jpg");
         bk = new Texture("back.png");
         ab = new Texture("about.png");
@@ -99,9 +88,7 @@ public class End_game_screen implements  Screen{
         }
         a++;
         if (a==1){
-            if (main.random_word){
-                main.score += 1;
-            }
+
             try (FileWriter writer = new FileWriter("your data.txt", false)) {  // false - перезапись файла
                 writer.write(main.name+" "+main.score);
             } catch (IOException e) {
@@ -111,6 +98,9 @@ public class End_game_screen implements  Screen{
         }
          main.game = 0;
         if (main.end && gm != 1 ){
+            if (main.random_word){
+                main.score += 1;
+            }
 
             print("You won",100,1200,700,100,batch);
             print("back to menu",150,1000,600,50,batch);
