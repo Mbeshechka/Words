@@ -50,10 +50,14 @@ public class LeaderBoard implements  Screen{
         myApi.send("leaderboard").enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+                if (response.isSuccessful()){
+                    main.koi = 0;
+
+
                 synchronized (db) {
                     db = response.body();
                     SortDB();
-                    PrintDB();
+                    //PrintDB();
                     synchronized (db) {
                         if (db.size() > 10) {
                             sizs = 10;
@@ -61,15 +65,20 @@ public class LeaderBoard implements  Screen{
                             sizs = db.size();
                         }
                         startGame.db2 = db;
+                        if (main.non == 1){
+                            main.non = 0;
+                            main.setScreen(main.startGame);
+                        }
                     }
-                }
+                }}
+
 
             }
 
             @Override
             public void onFailure(Call<List<Data>> call, Throwable t) {
-                System.out.println("Error getting from db");
-                t.printStackTrace();
+                main.koi = 1;
+
 
             }
         });
@@ -91,10 +100,11 @@ public class LeaderBoard implements  Screen{
         myApi.send(main.name,main.score).enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+                if (response.isSuccessful()){
                 synchronized (db) {
                     db = response.body();
                     SortDB();
-                    PrintDB();
+                    //PrintDB();
                     synchronized (db) {
                         if (db.size() > 10) {
                             sizs = 10;
@@ -103,14 +113,14 @@ public class LeaderBoard implements  Screen{
                         }
                         startGame.db2 = db;
                     }
-                }
+                }}
+
 
             }
 
             @Override
             public void onFailure(Call<List<Data>> call, Throwable t) {
-                System.out.println("Error getting from db");
-                t.printStackTrace();
+
 
             }
         });
@@ -197,6 +207,7 @@ public class LeaderBoard implements  Screen{
                 oiia.play();
                 oiia.setVolume(((float)(main.volume/9))/ 100);
                 timeCount = 0;
+                main.fdf = 2;
                 main.setScreen(main.justScreen);
             }
 

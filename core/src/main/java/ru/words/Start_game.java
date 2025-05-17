@@ -62,49 +62,56 @@ public class Start_game implements  Screen{
         }
     }
 
+
     @Override
     public void render(float delta) {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(d1,0,0,900,1600);
-        keyBoard.draw(batch);
-        if(Gdx.input.justTouched()){
-            touch.set(Gdx.input.getX(),Gdx.input.getY(),0);
-            camera.unproject(touch);
-            if(keyBoard.touch(touch.x,touch.y,0)){
-                if (keyBoard.getText().length() < 9 && !keyBoard.getText().isEmpty()){
-                    boolean flag = true;
-                    for (int i = 0; i < db2.size(); i++) {
-                        System.out.println(keyBoard.getText()+" "+db2.get(i).name.toUpperCase());
-                        if (Objects.equals(keyBoard.getText(), db2.get(i).name.toUpperCase())) {
-                            flag = false;
-                            break;
-                        }
+        if (main.koi == 0) {
+            keyBoard.draw(batch);
+            if (Gdx.input.justTouched()) {
+                touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+                camera.unproject(touch);
+                if (keyBoard.touch(touch.x, touch.y, 0)) {
+                    if (keyBoard.getText().length() < 9 && !keyBoard.getText().isEmpty()) {
+                        boolean flag = true;
+                        for (int i = 0; i < db2.size(); i++) {
+                            System.out.println(keyBoard.getText() + " " + db2.get(i).name.toUpperCase());
+                            if (Objects.equals(keyBoard.getText(), db2.get(i).name.toUpperCase())) {
+                                flag = false;
+                                break;
+                            }
 
-                    }
-                    System.out.println(flag);
-                    if (flag){
-                        main.name = keyBoard.getText();
-                        FileHandle file =  Gdx.files.external("your data.txt"); // local - для файлов в приватной директории приложения
-                        file.writeString(main.name+" 0", false);
+                        }
+                        System.out.println(flag);
+                        if (flag) {
+                            main.name = keyBoard.getText();
+                            FileHandle file = Gdx.files.external("your data.txt"); // local - для файлов в приватной директории приложения
+                            file.writeString(main.name + " 0", false);
 //                        try (FileWriter writer = new FileWriter("your data.txt", false)) {  // false - перезапись файла
 //                            writer.write(main.name+" 0");
 //                        } catch (IOException e) {
 //                        }
-                        String fileString2 = Gdx.files.external("your data.txt").readString();
-                        main.score = Integer.parseInt(fileString2.split(" ")[1]);
-                        main.name = fileString2.split(" ")[0];
+                            String fileString2 = Gdx.files.external("your data.txt").readString();
+                            main.score = Integer.parseInt(fileString2.split(" ")[1]);
+                            main.name = fileString2.split(" ")[0];
 
-                        main.setScreen(justScreen);
+                            main.setScreen(justScreen);
 
 
+                        }
                     }
                 }
             }
+            print("Hey whats your name", 0, 1200, 900, 900 / (float) "Hey whats your name".length(), batch);
+            print(keyBoard.getText(), 450 - (keyBoard.getText().length() * 100) / 2f, 800, keyBoard.getText().length() * 100, 100, batch);
         }
-        print("Hey whats your name",0,1200,900,900/(float)"Hey whats your name".length(),batch);
-        print(keyBoard.getText(), 450-(keyBoard.getText().length() * 100)/2f,800,keyBoard.getText().length() * 100,100,batch);
+        else{
+            print("cannot conect",0,800,900,900/13,batch);
+            print("to server",(900-(900/13*10))/2,800-(900/13),900/13*10,900/13,batch);
+        }
 
 
 

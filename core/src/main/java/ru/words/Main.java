@@ -22,6 +22,7 @@ public class Main extends Game {
     public volatile List<Data> db3 = new ArrayList<>();
     public OrthographicCamera camera;
     public Vector3 touch;
+    int non,koi;
     public BitmapFont font;
     public Boolean random_word,end ;
     first_screen firstScreen;
@@ -32,7 +33,7 @@ public class Main extends Game {
     Start_game startGame,startGame2;
     End_game_screen endGameScreen;
     LeaderBoard led;
-    public int whichSc,volume,score,game;
+    public int whichSc,volume,score,game,fdf;
     String fileString2;
 
     public String word,name;
@@ -105,9 +106,11 @@ public class Main extends Game {
         System.out.println(fileString2);
 
         if (fileString2.isEmpty()){
+            fdf = 1;
             setScreen(startGame);
         }
         else{
+            fdf = 2;
             setScreen(justScreen);
         }
 

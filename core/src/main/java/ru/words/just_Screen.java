@@ -88,7 +88,9 @@ public class just_Screen implements  Screen{
             else if(touch.y > 0 && touch.y < 225 && touch.x > 225 && touch.x < 450){
                 oiia.play();
                 oiia.setVolume(((float)(main.volume/9))/ 100);
-                main.led.LoadDB();
+                main.fdf = 3;
+                main.led.LoadDB2();
+
                 main.setScreen(main.led);
 
             }

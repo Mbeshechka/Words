@@ -101,7 +101,7 @@ public class second_Screen implements  Screen{
                 }
             }
         }
-        print(keyboard.getText(), 450-(keyboard.getText().length() * 100)/2f,300,keyboard.getText().length() * 100,100,batch);
+        print(keyboard.getText(), 450-(keyboard.getText().length() * 100)/2f,350,keyboard.getText().length() * 100,100,batch);
         //joj = new Texture(text.charAt(0)+".png");
         //batch.draw(joj,100,1200,100,100);
 
