@@ -33,13 +33,11 @@ public class first_screen implements  Screen{
         font = main.font;
         d13 = new Texture("bg.jpg");
         bk = new Texture("back.png");
-        rand = new Texture("nadpis.png");
         on = new Texture("ON.png");
         off = new Texture("OFF.png");
 
         muz = new Texture("muz.png");
         mus = new Texture("beg.png");
-        ny = new Texture("nad2.png");
 
 
 

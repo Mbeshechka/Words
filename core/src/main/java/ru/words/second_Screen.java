@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
@@ -19,7 +20,7 @@ public class second_Screen implements  Screen{
     public OrthographicCamera camera;
     public Vector3 touch;
     public BitmapFont font;
-    public int volumes;
+    public int volumes,lenh;
     private KeyBoard keyboard;
 
     BitmapFont font70;
@@ -38,7 +39,6 @@ public class second_Screen implements  Screen{
         font = main.font;
         d11 = new Texture("bg.jpg");
         bk = new Texture("back.png");
-        joj = new Texture("zsz.png");
 
         font70 = new BitmapFont(Gdx.files.internal("stylo90gray.fnt"));
         if (main.language == 0){
@@ -61,9 +61,12 @@ public class second_Screen implements  Screen{
     }
     public void print(String word, float x, float y, float width, float height,SpriteBatch batch) {
         Texture letter;
+        String alp = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ";
         for (int i = 0; i < word.length(); i++) {
-            letter = new Texture(word.toUpperCase().charAt(i) + ".png");
-            batch.draw(letter, x + ((float) width / word.length()) * i, y, (float) width / word.length(), height);
+            if (alp.contains(String.valueOf(word.toUpperCase().charAt(i)))){
+                letter = new Texture(word.toUpperCase().charAt(i) + ".png");
+                batch.draw(letter, x + ( width /(float) word.length()) * i, y,  width / (float) word.length(), height);
+            }
         }
     }
 
@@ -77,6 +80,7 @@ public class second_Screen implements  Screen{
                 oiia.play();
                 oiia.setVolume(((float)(main.volume/9))/ 100);
                 keyboard.setNull();
+                lenh = 1;
                 main.setScreen(main.justScreen);
             }
         }
@@ -104,8 +108,7 @@ public class second_Screen implements  Screen{
 
                 System.out.println(text);
                 if (text.length() != 5){
-                    System.out.println(keyboard.getText().length());
-                    batch.draw(joj,0,1200,900,100);
+                    lenh = 1;
 
                 }
                 else{
@@ -113,6 +116,8 @@ public class second_Screen implements  Screen{
                     keyboard.setNull();
                     oiia.play();
                     oiia.setVolume(((float)(main.volume/9))/100);
+                    lenh = 0;
+                    main.fourthScreen.myList = new ArrayList<>();
                     main.setScreen(main.fourthScreen);
                 }
             }}
@@ -122,8 +127,8 @@ public class second_Screen implements  Screen{
 
                     System.out.println(text);
                     if (text.length() != 5){
-                        System.out.println(keyboard.getText().length());
-                        batch.draw(joj,0,1200,900,100);
+
+                        lenh = 1;
 
                     }
                     else{
@@ -131,12 +136,24 @@ public class second_Screen implements  Screen{
                         keyboard.setNull();
                         oiia.play();
                         oiia.setVolume(((float)(main.volume/9))/100);
+                        lenh = 0;
+                        main.fourthScreen.myList = new ArrayList<>();
                         main.setScreen(main.fourthScreen);
                     }
                 }
             }
         }
-        print(keyboard.getText(), 450-(keyboard.getText().length() * 100)/2f,350,keyboard.getText().length() * 100,100,batch);
+        if (main.language == 0){
+            if (lenh == 1){
+                print("length must be 5",0,1000,900,900/16,batch);
+            }
+        }
+        else{
+            if (lenh == 1){
+                print("длинна должна быть 5",0,1000,900,900/20,batch);
+            }
+        }
+        print(keyboard.getText(), 450-(keyboard.getText().length() * 100)/2f,600,keyboard.getText().length() * 100,100,batch);
         //joj = new Texture(text.charAt(0)+".png");
         //batch.draw(joj,100,1200,100,100);
 

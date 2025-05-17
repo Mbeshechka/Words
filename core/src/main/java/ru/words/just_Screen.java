@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.sun.jdi.FloatValue;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class just_Screen implements  Screen{
@@ -39,7 +40,6 @@ public class just_Screen implements  Screen{
         sett = new Texture("settings.png");
         ex = new Texture("exit.png");
         d1 = new Texture("bg.jpg");
-        pl = new Texture("play.png");
 
 
 
@@ -76,6 +76,7 @@ public class just_Screen implements  Screen{
                     Collections.shuffle(main.myList);
                     //System.out.println(myList);
                     main.word = main.myList.get(0);
+                    main.fourthScreen.myList = new ArrayList<>();
                     main.setScreen(main.fourthScreen);
                 }
                 else{
