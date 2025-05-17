@@ -166,27 +166,21 @@ public class fourth_Screen implements  Screen{
         if  (Gdx.input.justTouched()){
             if (main.language == 0){
             if (keyboard.touchGame(touch.x, touch.y,main.volume) && main.game == 0){
-                System.out.println(keyboard.getText().length());
                 if (keyboard.getText().length() == 5){
-                    System.out.println("k");
                     text = keyboard.getText().toUpperCase();
                     keyboard.setNull();
                     times -= 1;
                     myList.add(text);
-                    System.out.println(myList+" "+ifn);
                 }
 
             }}
             else{
                 if (keyboard.touchRusGame(touch.x, touch.y,main.volume) && main.game == 0){
-                    System.out.println(keyboard.getText().length());
                     if (keyboard.getText().length() == 5){
-                        System.out.println("k");
                         text = keyboard.getText().toUpperCase();
                         keyboard.setNull();
                         times -= 1;
                         myList.add(text);
-                        System.out.println(myList+" "+ifn);
                     }
 
                 }

@@ -32,7 +32,6 @@ public class KeyBoard {
         this.width = width;
         this.height = height;
         cl = Gdx.audio.newMusic(Gdx.files.internal("kn4.mp3"));
-        System.out.println(44);
         puts();
     }
     public KeyBoard(int width, int height, int rus) {
@@ -41,7 +40,6 @@ public class KeyBoard {
         this.height = height;
 
         cl = Gdx.audio.newMusic(Gdx.files.internal("kn4.mp3"));
-        System.out.println(1223);
         putsRus();
     }
     private void puts(){
@@ -62,7 +60,6 @@ public class KeyBoard {
     }
     private void putsRus(){
         for (int i = 0; i < 12; i++) {
-            System.out.println(s2.charAt(i));
             fl = new float[]{ (float) width/12f*i,(float) height/3f*2, (float) width/12f*i + (float) width/12f,(float) height/3f*2 + (float) height/3f};
 
             dict2.put(String.valueOf(s2.charAt(i)),fl);
@@ -177,7 +174,6 @@ public class KeyBoard {
             for (int j = 0; j < 1; j++) {
 
             }
-            System.out.println(dict2);
             if(x>dict2.get(String.valueOf(s2.charAt(i)))[0] && x<dict2.get(String.valueOf(s2.charAt(i)))[2] &&
                 y > dict2.get(String.valueOf(s2.charAt(i)))[1] && y < dict2.get(String.valueOf(s2.charAt(i)))[3] )
             {
@@ -212,7 +208,6 @@ public class KeyBoard {
             for (int j = 0; j < 1; j++) {
 
             }
-            System.out.println(dict2);
             if(x>dict2.get(String.valueOf(s2.charAt(i)))[0] && x<dict2.get(String.valueOf(s2.charAt(i)))[2] &&
                 y > dict2.get(String.valueOf(s2.charAt(i)))[1] && y < dict2.get(String.valueOf(s2.charAt(i)))[3] )
             {
