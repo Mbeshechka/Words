@@ -106,7 +106,7 @@ public class fourth_Screen implements  Screen{
         if (main.language == 0){
             keyboard = new KeyBoard( 900, 300);
         }else{
-            keyboard = new KeyBoard( 900, 300,1);
+            keyboard = new KeyBoard( 900, 350,1);
         }
 
     }
