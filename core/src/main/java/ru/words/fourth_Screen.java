@@ -1,5 +1,6 @@
 package ru.words;
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,7 @@ public class fourth_Screen implements  Screen{
     Map<String,Integer> dict = new HashMap<>() ;
     Map<String,Integer> dg = new HashMap<>() ;
     private String s = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    String s2 = "ЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЭЁЧСМИТЪЬБЮ";
     BitmapFont font70;
     String text,word;
     int times = 6;
@@ -80,19 +83,36 @@ public class fourth_Screen implements  Screen{
         }
 
     }
+    public void putsRus() {
+        for (int i = 0; i < 32; i++) {
+            dict.put(String.valueOf(s2.charAt(i)),count(main.word,String.valueOf(s2.charAt(i))));
+        }
+
+    }
     public void puts2() {
         for (int i = 0; i < 26; i++) {
             dg.put(String.valueOf(s.charAt(i)),0);
         }
 
     }
+    public void puts2Rus() {
+        for (int i = 0; i < 32; i++) {
+            dg.put(String.valueOf(s2.charAt(i)),0);
+        }
+
+    }
     @Override
     public void show() {
+        if (main.language == 0){
+            keyboard = new KeyBoard( 900, 300);
+        }else{
+            keyboard = new KeyBoard( 900, 300,1);
+        }
 
     }
     public void print(String word, float x, float y, float width, float height,SpriteBatch batch) {
         Texture letter;
-        String alp = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+        String alp = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890ЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЭЁЧСМИТЪЬБЮ";
         for (int i = 0; i < word.length(); i++) {
             if (alp.contains(String.valueOf(word.toUpperCase().charAt(i)))){
                 letter = new Texture(word.toUpperCase().charAt(i) + ".png");
@@ -108,7 +128,12 @@ public class fourth_Screen implements  Screen{
         main.endGameScreen.gm = 0;
         oi++;
         if (oi == 1){
-            puts2();
+            if (main.language == 0){
+                puts2();
+            }
+            else{
+                puts2Rus();
+            }
         }
 
 
@@ -132,8 +157,14 @@ public class fourth_Screen implements  Screen{
 
         batch.draw(bk,0,1500,100,100);
 
-        keyboard.drawGame(batch,dg);
+        if (main.language == 0){
+            keyboard.drawGame(batch,dg);
+        }
+        else{
+            keyboard.drawGameRus(batch,dg);
+        }
         if  (Gdx.input.justTouched()){
+            if (main.language == 0){
             if (keyboard.touchGame(touch.x, touch.y,main.volume) && main.game == 0){
                 System.out.println(keyboard.getText().length());
                 if (keyboard.getText().length() == 5){
@@ -145,6 +176,20 @@ public class fourth_Screen implements  Screen{
                     System.out.println(myList+" "+ifn);
                 }
 
+            }}
+            else{
+                if (keyboard.touchRusGame(touch.x, touch.y,main.volume) && main.game == 0){
+                    System.out.println(keyboard.getText().length());
+                    if (keyboard.getText().length() == 5){
+                        System.out.println("k");
+                        text = keyboard.getText().toUpperCase();
+                        keyboard.setNull();
+                        times -= 1;
+                        myList.add(text);
+                        System.out.println(myList+" "+ifn);
+                    }
+
+                }
             }
         }
 
@@ -152,7 +197,12 @@ public class fourth_Screen implements  Screen{
 
         if (!myList.isEmpty()){
             for (int i = 0; i < myList.size(); i++) {
-                puts();
+                if (main.language == 0){
+                    puts();
+                }
+                else{
+                    putsRus();
+                }
                 ai[0] = 0;
                 ai[1] = 0;
                 ai[2] = 0;
@@ -224,6 +274,13 @@ public class fourth_Screen implements  Screen{
                 if (timeCount >= timerInterval){
                     timeCount = 0f;
                     myList = ifn;
+                    if(main.language == 0){
+                        puts2();
+                        puts();
+                    }else{
+                        puts2Rus();
+                        putsRus();
+                    }
                     main.setScreen(main.endGameScreen);
                 }
             }
@@ -235,15 +292,21 @@ public class fourth_Screen implements  Screen{
                 main.game=1;
                 if (timeCount >= timerInterval){
                     timeCount = 0f;
+                    if(main.language == 0){
+                        puts2();
+                        puts();
+                    }else{
+                        puts2Rus();
+                        putsRus();
+                    }
 
                     main.setScreen(main.endGameScreen);
                 }
 
             }
         }
-
-        print(keyboard.getText(), 200,1400 -  100 * (myList.size())
-            ,keyboard.getText().length() * 100,100,batch);
+        print(keyboard.text.toUpperCase(), 200,1400 -  100 * (myList.size())
+            ,keyboard.text.toUpperCase().length() * 100,100,batch);
 
 
 

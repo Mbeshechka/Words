@@ -45,7 +45,7 @@ public class End_game_screen implements  Screen{
     }
     public void print(String word, float x, float y, float width, float height,SpriteBatch batch) {
         Texture letter;
-        String alp = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+        String alp = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ";
         for (int i = 0; i < word.length(); i++) {
             if (alp.contains(String.valueOf(word.toUpperCase().charAt(i)))){
                 letter = new Texture(word.toUpperCase().charAt(i) + ".png");
@@ -98,21 +98,37 @@ public class End_game_screen implements  Screen{
         }
          main.game = 0;
         if (main.end && gm != 1 ){
-            if (main.random_word){
+            if (main.random_word && a == 1){
                 main.score += 1;
             }
+            if(main.language == 0){
 
             print("You won",100,1200,700,100,batch);
             print("back to menu",150,1000,600,50,batch);
-            print("play again",200,800,500,50,batch);
+            print("play again",200,800,500,50,batch);}
+            else{
+                print("ты угадал",0,1200,900,100,batch);
+                print("в меню",325,1000,250,50,batch);
+                print("играть еще раз",100,800,14*50,50,batch);
+            }
         }
         else if(gm!=1){
             main.fourthScreen.myList = main.fourthScreen.ifn;
+            if (main.language == 0){
+
+
             print("You Lost",50,1200,800,100,batch);
             print("back to menu",150,1000,600,50,batch);
             print("play again",200,800,500,50,batch);
             print("the word was",150,600,600,50,batch);
-            print(main.word,375,500,250,50,batch);
+            print(main.word,375,500,250,50,batch);}
+            else{
+                print("ты проиграл",50,1200,800,800/11,batch);
+                print("в меню",325,1000,250,50,batch);
+                print("играть еще раз",100,800,14*50,50,batch);
+                print("слово было",200,600,500,50,batch);
+                print(main.word,375,500,250,50,batch);
+            }
 
         }
 

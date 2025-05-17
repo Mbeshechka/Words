@@ -22,7 +22,8 @@ public class Main extends Game {
     public volatile List<Data> db3 = new ArrayList<>();
     public OrthographicCamera camera;
     public Vector3 touch;
-    int non,koi;
+    int non,koi,language;
+
     public BitmapFont font;
     public Boolean random_word,end ;
     first_screen firstScreen;

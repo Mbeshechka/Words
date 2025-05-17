@@ -18,7 +18,9 @@ public class KeyBoard {
     private Vector3 touch;
     public Music cl;
     private Map<String,float[]> dict = new HashMap<String,float[]>() ;
+    private Map<String,float[]> dict2 = new HashMap<String,float[]>() ;
     private String s = new String("QWERTYUIOPASDFGHJKLZXCVBNM");
+    private String s2 = "ЙЦУКЕНГШЩЗХФЫВАПРОЛДЖЭЁЧСМИТЪЬБЮ";
     private Texture t;
     String text = "";
     String text2 = "";
@@ -30,7 +32,17 @@ public class KeyBoard {
         this.width = width;
         this.height = height;
         cl = Gdx.audio.newMusic(Gdx.files.internal("kn4.mp3"));
+        System.out.println(44);
         puts();
+    }
+    public KeyBoard(int width, int height, int rus) {
+
+        this.width = width;
+        this.height = height;
+
+        cl = Gdx.audio.newMusic(Gdx.files.internal("kn4.mp3"));
+        System.out.println(1223);
+        putsRus();
     }
     private void puts(){
         for (int i = 0; i < 10; i++) {
@@ -47,6 +59,188 @@ public class KeyBoard {
             dict.put(String.valueOf(s.charAt(i+19)),fl);
         }
 
+    }
+    private void putsRus(){
+        for (int i = 0; i < 12; i++) {
+            System.out.println(s2.charAt(i));
+            fl = new float[]{ (float) width/12f*i,(float) height/3f*2, (float) width/12f*i + (float) width/12f,(float) height/3f*2 + (float) height/3f};
+
+            dict2.put(String.valueOf(s2.charAt(i)),fl);
+        }
+        for (int i = 0; i < 11; i++) {
+            fl = new float[]{ (width/12f*(i+0)),height/3f*1,width/12f*(i+0) + width/12f,height/3f*1 + height/3f};
+            dict2.put(String.valueOf(s2.charAt(i+12)),fl);
+        }
+        for (int i = 0; i < 9; i++) {
+            fl = new float[]{ (width/12f*(i+0.5f)),0,width/12f*i + width/12f, height/3f};
+            dict2.put(String.valueOf(s2.charAt(i+23)),fl);
+        }
+    }
+    public void drawRus(SpriteBatch batch){
+
+            for (int i = 0; i < 12; i++) {
+                t = new Texture("box.png");
+                batch.draw(t,width/12f*i,height/3f*2,width/12f,height/3f);
+                t = new Texture(s2.charAt(i)+".png");
+                batch.draw(t,width/12f*i,height/3f*2,width/12f,height/3f);
+
+            }
+        for (int i = 0; i < 11; i++) {
+            t = new Texture("box.png");
+            batch.draw(t,width/12f*i,height/3f*1,width/12f,height/3f);
+            t = new Texture(s2.charAt(i+12)+".png");
+            batch.draw(t,width/12f*i,height/3f*1,width/12f,height/3f);
+        }
+        for (int i =0;i < 9; i++){
+            t = new Texture("box.png");
+            batch.draw(t,width/12f*(i+0.5f),0,width/12f,height/3f);
+            t = new Texture(s2.charAt(i+23)+".png");
+            batch.draw(t,width/12f*(i+0.5f),0,width/12f,height/3f);
+        }
+        t = new Texture("box.png");
+        batch.draw(t,width/12f*(9+0.5f),height/3f*0,width/12f*2.5f,height/3f);
+        t = new Texture("box.png");
+        batch.draw(t,width/12f*(11),height/3f*1,width/12f,height/3f);
+        t = new Texture("Nope.png");
+        batch.draw(t,width/12f*(11),height/3f*1,width/12f,height/3f);
+        t = new Texture("Enter.png");
+        batch.draw(t,width/12f*(9+0.5f),height/3f*0,width/10f*2.5f,height/3f);
+    }public void drawGameRus(SpriteBatch batch,Map<String,Integer> dg){
+
+        for (int i = 0; i < 12; i++) {
+            if (dg.get(String.valueOf(s2.charAt(i))) == 0){
+                t = new Texture("box.png");
+            } else if (dg.get(String.valueOf(s2.charAt(i))) == 1){
+                t = new Texture("yellow.png");
+            }
+            else if (dg.get(String.valueOf(s2.charAt(i))) == 2){
+                t = new Texture("green.png");
+            }
+            else if (dg.get(String.valueOf(s2.charAt(i))) == 3){
+                t = new Texture("gray.png");
+            }
+
+            batch.draw(t,width/12f*i,height/3f*2,width/12f,height/3f);
+            t = new Texture(s2.charAt(i)+".png");
+            batch.draw(t,width/12f*i,height/3f*2,width/12f,height/3f);
+
+        }
+        for (int i = 0; i < 11; i++) {
+            if (dg.get(String.valueOf(s2.charAt(i+12))) == 0){
+                t = new Texture("box.png");
+            } else if (dg.get(String.valueOf(s2.charAt(i+12))) == 1){
+                t = new Texture("yellow.png");
+            }
+            else if (dg.get(String.valueOf(s2.charAt(i+12))) == 2){
+                t = new Texture("green.png");
+            }
+            else if (dg.get(String.valueOf(s2.charAt(i+12))) == 3){
+                t = new Texture("gray.png");
+            }
+            batch.draw(t,width/12f*(i+0),height/3f*1,width/12f,height/3f);
+            t = new Texture(s2.charAt(i+12)+".png");
+            batch.draw(t,width/12f*(i+0),height/3f*1,width/12f,height/3f);
+
+        }
+        t = new Texture("box.png");
+        batch.draw(t,width/12f*(9+0.5f),height/3f*0,width/12f*2.5f,height/3f);
+        t = new Texture("box.png");
+        batch.draw(t,width/12f*(11),height/3f*1,width/12f,height/3f);
+        t = new Texture("Nope.png");
+        batch.draw(t,width/12f*(11),height/3f*1,width/12f,height/3f);
+        t = new Texture("Enter.png");
+        batch.draw(t,width/12f*(9+0.5f),height/3f*0,width/10f*2.5f,height/3f);
+
+
+        for (int i = 0; i < 9; i++) {
+            if (dg.get(String.valueOf(s2.charAt(i+23))) == 0){
+                t = new Texture("box.png");
+            } else if (dg.get(String.valueOf(s2.charAt(i+23))) == 1){
+                t = new Texture("yellow.png");
+            }
+            else if (dg.get(String.valueOf(s2.charAt(i+23))) == 2){
+                t = new Texture("green.png");
+            }
+            else if (dg.get(String.valueOf(s2.charAt(i+23))) == 3){
+                t = new Texture("gray.png");
+            }
+            batch.draw(t,width/12f*(i+0.5f),0,width/12f,height/3f);
+            t = new Texture(s2.charAt(i+23)+".png");
+            batch.draw(t,width/12f*(i+0.5f),0,width/12f,height/3f);
+
+        }
+    }
+
+    public boolean touchRus(float x, float y,int volume){
+        text2 = text;
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 1; j++) {
+
+            }
+            System.out.println(dict2);
+            if(x>dict2.get(String.valueOf(s2.charAt(i)))[0] && x<dict2.get(String.valueOf(s2.charAt(i)))[2] &&
+                y > dict2.get(String.valueOf(s2.charAt(i)))[1] && y < dict2.get(String.valueOf(s2.charAt(i)))[3] )
+            {
+                cl.play();
+                cl.setVolume(volume/900f);
+                text += String.valueOf(s2.charAt(i));
+                return false;
+            }
+        }
+        if (text2 == text) {
+            if (x < width && x>width/12f*9.5f && y<height/3f && y > 0){
+                return true;
+
+            }
+            else if(x < width && x>width/12f*(11) && y<height/3f*2 && y > height/3f*1 && !text.isEmpty()){
+                if (text.length() == 1){
+                    text = "";
+                }
+                else{
+                    StringBuilder gdxSb = new StringBuilder(text);
+                    text = gdxSb.substring(0,text.length()-1);
+                }
+            }
+
+
+        }
+        return false;
+    }
+    public boolean touchRusGame(float x, float y,int volume){
+        text2 = text;
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 1; j++) {
+
+            }
+            System.out.println(dict2);
+            if(x>dict2.get(String.valueOf(s2.charAt(i)))[0] && x<dict2.get(String.valueOf(s2.charAt(i)))[2] &&
+                y > dict2.get(String.valueOf(s2.charAt(i)))[1] && y < dict2.get(String.valueOf(s2.charAt(i)))[3] )
+            {
+                cl.play();
+                cl.setVolume(volume/900f);
+                if(text.length() != 5){
+                text += String.valueOf(s2.charAt(i));}
+                return false;
+            }
+        }
+        if (text2 == text) {
+            if (x < width && x>width/12f*9.5f && y<height/3f && y > 0){
+                return true;
+
+            }
+            else if(x < width && x>width/12f*(11) && y<height/3f*2 && y > height/3f*1 && !text.isEmpty()){
+                if (text.length() == 1){
+                    text = "";
+                }
+                else{
+                    StringBuilder gdxSb = new StringBuilder(text);
+                    text = gdxSb.substring(0,text.length()-1);
+                }
+            }
+
+
+        }
+        return false;
     }
     public void draw(SpriteBatch batch){
         for (int i = 0; i < 10; i++) {
@@ -91,7 +285,7 @@ public class KeyBoard {
     public boolean touch(float x, float y,int volume){
         text2 = text;
         for (int i = 0; i < 26; i++) {
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 1; j++) {
 
             }
             if(x>dict.get(String.valueOf(s.charAt(i)))[0] && x<dict.get(String.valueOf(s.charAt(i)))[2] &&

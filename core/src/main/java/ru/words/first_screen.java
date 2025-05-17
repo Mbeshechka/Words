@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class first_screen implements  Screen{
     Main main;
 
@@ -46,11 +49,14 @@ public class first_screen implements  Screen{
     public void show() {
 
     }
-    public void print(String word, int x, int y, int width, int height,SpriteBatch batch) {
+    public void print(String word, float x, float y, float width, float height,SpriteBatch batch) {
         Texture letter;
+        String alp = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ";
         for (int i = 0; i < word.length(); i++) {
-            letter = new Texture(word.toUpperCase().charAt(i) + ".png");
-            batch.draw(letter, x + ((float) width / word.length()) * i, y, (float) width / word.length(), height);
+            if (alp.contains(String.valueOf(word.toUpperCase().charAt(i)))){
+                letter = new Texture(word.toUpperCase().charAt(i) + ".png");
+                batch.draw(letter, x + ( width /(float) word.length()) * i, y,  width / (float) word.length(), height);
+            }
         }
     }
 
@@ -77,12 +83,54 @@ public class first_screen implements  Screen{
                 kn4.play();
                 kn4.setVolume(((float)(main.volume/9))/ 100);
             }
+            if (touch.x>0&&touch.x<900&&touch.y >550&&touch.y<650){
+                if (main.language == 1){
+                    main.language = 0;
+                    main.myList = new ArrayList<>();
+                    String fileString = Gdx.files.internal("sl.txt").readString();
+                    String[] Arr;
+                    Arr = fileString.split("\n");
+                    for (int i = 0; i < Arr.length; i++) {
+                        if (Arr[i].length() == 5 && !Arr[i].contains("'")&& !Arr[i].contains(".") && !Arr[i].contains("-") && !Arr[i].contains(",")  && Arr[i].charAt(0) == Arr[i].toLowerCase().charAt(0)) {
+                            main.myList.add(Arr[i].toUpperCase());
+                        }
+                    }
+
+
+
+
+
+                    Collections.shuffle(main.myList);
+                    //System.out.println(myList);
+                    main.word = main.myList.get(0);
+                }
+                else{
+                    main.language = 1;
+                    main.myList = new ArrayList<>();
+                    String fileString = Gdx.files.internal("rus.txt").readString("utf8");
+                    String[] Arr;
+                    Arr = fileString.split("\n");
+                    for (int i = 0; i < Arr.length; i++) {
+                        if (Arr[i].length() == 5 && !Arr[i].contains("'")&& !Arr[i].contains(".") && !Arr[i].contains("-") && !Arr[i].contains(",")  && Arr[i].charAt(0) == Arr[i].toLowerCase().charAt(0)) {
+                            main.myList.add(Arr[i].toUpperCase());
+                        }
+                    }
+
+
+
+
+
+                    Collections.shuffle(main.myList);
+                    //System.out.println(myList);
+                    main.word = main.myList.get(0);
+                }
+            }
         }
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(d13,0,0,900,1600);
         batch.draw(bk,0,1500,100,100);
-       batch.draw(rand,0,1300,900,100);
+
         if (main.random_word) {
             batch.draw(on,800,1300,100,100);
 
@@ -90,9 +138,10 @@ public class first_screen implements  Screen{
         else {
             batch.draw(off,800,1300,100,100);
         }
-        batch.draw(ny,0,1100,900,100);
+
         batch.draw(muz,-20,950,940,100);
         batch.draw(mus,main.volume,950,20,100);
+
         if (main.volume / 9 == 100){
             c1 = new Texture("1.png");
             c2 = new Texture("0.png");
@@ -109,6 +158,18 @@ public class first_screen implements  Screen{
         } else if (main.volume / 9 < 10) {
             c1 = new Texture(String.valueOf(main.volume / 9) + ".png");
             batch.draw(c1,500,900,50,50);
+        }
+        if(main.language == 0){
+            print("random word",0,1300,700,70,batch);
+            print("sounds",0,1100,420,70,batch);
+            print("language",0,700,600,75,batch);
+            print("english",200,550,525,75,batch);
+        }
+        else{
+            print("звуки",0,1100,375,75,batch);
+            print("случайное слово",0,1320,700,700/15,batch);
+            print("язык",0,700,300,75,batch);
+            print("русский",200,550,525,75,batch);
         }
 
 

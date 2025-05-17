@@ -41,13 +41,22 @@ public class second_Screen implements  Screen{
         joj = new Texture("zsz.png");
 
         font70 = new BitmapFont(Gdx.files.internal("stylo90gray.fnt"));
-        keyboard = new KeyBoard( 900, 300);
+        if (main.language == 0){
+          keyboard = new KeyBoard( 900, 300);}
+        else{
+            keyboard = new KeyBoard( 900, 300,1);
+        }
 
 
 
     }
     @Override
     public void show() {
+        if (main.language == 0){
+            keyboard = new KeyBoard( 900, 300);}
+        else{
+            keyboard = new KeyBoard( 900, 300,1);
+        }
 
     }
     public void print(String word, float x, float y, float width, float height,SpriteBatch batch) {
@@ -80,8 +89,15 @@ public class second_Screen implements  Screen{
 
 
         batch.draw(bk,0,1500,100,100);
-        keyboard.draw(batch);
+        if (main.language == 0) {
+
+
+        keyboard.draw(batch);}
+        else{
+            keyboard.drawRus(batch);
+        }
         if (Gdx.input.justTouched()){
+            if (main.language == 0){
 
             if (keyboard.touch(touch.x, touch.y,main.volume)) {
                 text = keyboard.getText();
@@ -98,6 +114,25 @@ public class second_Screen implements  Screen{
                     oiia.play();
                     oiia.setVolume(((float)(main.volume/9))/100);
                     main.setScreen(main.fourthScreen);
+                }
+            }}
+            else{
+                if (keyboard.touchRus(touch.x, touch.y,main.volume)) {
+                    text = keyboard.getText();
+
+                    System.out.println(text);
+                    if (text.length() != 5){
+                        System.out.println(keyboard.getText().length());
+                        batch.draw(joj,0,1200,900,100);
+
+                    }
+                    else{
+                        main.word = text;
+                        keyboard.setNull();
+                        oiia.play();
+                        oiia.setVolume(((float)(main.volume/9))/100);
+                        main.setScreen(main.fourthScreen);
+                    }
                 }
             }
         }

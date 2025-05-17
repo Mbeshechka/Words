@@ -48,6 +48,14 @@ public class just_Screen implements  Screen{
     public void show() {
 
     }
+    public void print(String word, int x, int y, int width, int height,SpriteBatch batch) {
+
+        Texture letter;
+        for (int i = 0; i < word.length(); i++) {
+            letter = new Texture(word.toUpperCase().charAt(i) + ".png");
+            batch.draw(letter, x + ((float) width / word.length()) * i, y, (float) width / word.length(), height);
+        }
+    }
 
     @Override
     public void render(float delta) {
@@ -61,7 +69,7 @@ public class just_Screen implements  Screen{
 
                 main.setScreen(main.firstScreen);
             }
-            else if(touch.y < 1000+233 && touch.y > 1000 && touch.x > 100 && touch.x < 800){
+            else if(touch.y < 1000+(700/4) && touch.y > 1000 && touch.x > 100 && touch.x < 800){
                 if (main.random_word){
                     oiia.play();
                     oiia.setVolume(((float)(main.volume/9))/ 100);
@@ -102,7 +110,12 @@ public class just_Screen implements  Screen{
         batch.draw(led,225,0,225,225);
         batch.draw(sett,450,0,225,225);
         batch.draw(inf,675,0,225,225);
-        batch.draw(pl,100,1000,700,233);
+        if (main.language == 0){
+            print("play",100,1000,700,700/4,batch);
+        }
+        else{
+            print("играть",100,1000,700,700/6,batch);
+        }
 
 
 

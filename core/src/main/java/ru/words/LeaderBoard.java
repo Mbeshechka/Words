@@ -217,8 +217,15 @@ public class LeaderBoard implements  Screen{
         batch.draw(d12,0,0,900,1600);
 
         batch.draw(bk,0,1500,100,100);
+        if (main.language == 0){
+
+
         print("name",200,1400,200,50,batch);
-        print("score",600,1400,200,50,batch);
+        print("score",600,1400,250,50,batch);}
+        else{
+            print("имя",200,1400,150,50,batch);
+            print("очки",600,1400,200,50,batch);
+        }
 
         if (timeCount >= timerInterval){
 
@@ -229,9 +236,18 @@ public class LeaderBoard implements  Screen{
 //                        SortDB();`
 
                     for (int i = 0; i < sizs; i++) {
-                        print(db.get(i).name, 200, 1400 - 100 * (i + 1), db.get(i).name.length() * 50, 50, batch);
-                        print(String.valueOf(db.get(i).score), 600, 1400 - 100 * (i + 1), String.valueOf(db.get(i).score).length() * 50, 50, batch);
-                        print(String.valueOf(i + 1), 100, 1400 - 100 * (i + 1), String.valueOf(i + 1).length() * 50, 50, batch);
+                        if (i != 9){
+                            print(db.get(i).name, 200, 1400 - 100 * (i + 1), db.get(i).name.length() * 50, 50, batch);
+                            print(String.valueOf(db.get(i).score), 600, 1400 - 100 * (i + 1), String.valueOf(db.get(i).score).length() * 50, 50, batch);
+                            print(String.valueOf(i + 1), 100, 1400 - 100 * (i + 1), String.valueOf(i + 1).length() * 50, 50, batch);
+
+                        }
+                        else{
+                            print(db.get(i).name, 200, 1400 - 100 * (i + 1), db.get(i).name.length() * 50, 50, batch);
+                            print(String.valueOf(db.get(i).score), 600, 1400 - 100 * (i + 1), String.valueOf(db.get(i).score).length() * 50, 50, batch);
+                            print(String.valueOf(i + 1), 50, 1400 - 100 * (i + 1), String.valueOf(i + 1).length() * 50, 50, batch);
+
+                        }
                     }
                 }
             }
