@@ -90,7 +90,7 @@ public class Main extends Game {
         startGame = startGame2;
 
 
-        fileString2 = Gdx.files.external("your data.txt").readString();
+        fileString2 = Gdx.files.internal("your data.txt").readString();
 
         if (fileString2.isEmpty()){
             led.LoadDB();
@@ -100,7 +100,7 @@ public class Main extends Game {
             name = fileString2.split(" ")[0];
         }
         whichSc = 0;
-        fileString2 = Gdx.files.external("your data.txt").readString();
+        fileString2 = Gdx.files.internal("your data.txt").readString();
         System.out.println(fileString2);
 
         if (fileString2.isEmpty()){

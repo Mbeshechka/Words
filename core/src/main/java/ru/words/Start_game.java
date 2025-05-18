@@ -88,13 +88,13 @@ public class Start_game implements  Screen{
                         System.out.println(flag);
                         if (flag) {
                             main.name = keyBoard.getText();
-                            FileHandle file = Gdx.files.external("your data.txt"); // local - для файлов в приватной директории приложения
+                            FileHandle file = Gdx.files.internal("your data.txt"); // local - для файлов в приватной директории приложения
                             file.writeString(main.name + " 0", false);
 //                        try (FileWriter writer = new FileWriter("your data.txt", false)) {  // false - перезапись файла
 //                            writer.write(main.name+" 0");
 //                        } catch (IOException e) {
 //                        }
-                            String fileString2 = Gdx.files.external("your data.txt").readString();
+                            String fileString2 = Gdx.files.internal("your data.txt").readString();
                             main.score = Integer.parseInt(fileString2.split(" ")[1]);
                             main.name = fileString2.split(" ")[0];
 
