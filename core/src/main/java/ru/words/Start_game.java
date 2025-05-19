@@ -49,6 +49,7 @@ public class Start_game implements  Screen{
     }
     @Override
     public void show() {
+        main.led.LoadDB();
 
     }
     public void print(String word, float x, float y, float width, float height,SpriteBatch batch) {
@@ -88,13 +89,17 @@ public class Start_game implements  Screen{
                         System.out.println(flag);
                         if (flag) {
                             main.name = keyBoard.getText();
-                            FileHandle file = Gdx.files.internal("your data.txt"); // local - для файлов в приватной директории приложения
-                            file.writeString(main.name + " 0", false);
+//                            Gdx.files.internal("your data.txt").writeString(main.name + " 0", false); // local - для файлов в приватной директории приложения
+
+                            FileHandle file = Gdx.files.local("your data.txt");  // Путь: /data/data/your.package/files/data.txt
+                            file.writeString(main.name+" 0",false);
+
 //                        try (FileWriter writer = new FileWriter("your data.txt", false)) {  // false - перезапись файла
 //                            writer.write(main.name+" 0");
 //                        } catch (IOException e) {
 //                        }
-                            String fileString2 = Gdx.files.internal("your data.txt").readString();
+                            FileHandle file2 = Gdx.files.local("your data.txt");
+                            String fileString2 =file2.readString();
                             main.score = Integer.parseInt(fileString2.split(" ")[1]);
                             main.name = fileString2.split(" ")[0];
 

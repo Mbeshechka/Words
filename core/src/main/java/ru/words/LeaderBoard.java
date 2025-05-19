@@ -103,6 +103,7 @@ public class LeaderBoard implements  Screen{
                 if (response.isSuccessful()){
                 synchronized (db) {
                     db = response.body();
+                    print(String.valueOf(db.size()),0,0,100,100,batch);
                     SortDB();
                     //PrintDB();
                     synchronized (db) {

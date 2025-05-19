@@ -90,8 +90,14 @@ public class Main extends Game {
         startGame = startGame2;
 
 
-        fileString2 = Gdx.files.internal("your data.txt").readString();
-
+        FileHandle file = Gdx.files.local("your data.txt");
+        if (file.exists()) {// Путь: /data/data/your.package/files/data.txt
+        fileString2 =file.readString();}
+        else{
+            FileHandle file2 = Gdx.files.local("your_data.txt");  // Лучше без пробелов
+            file2.writeString("", false);
+            fileString2 = "";
+        }
         if (fileString2.isEmpty()){
             led.LoadDB();
         }
@@ -100,7 +106,15 @@ public class Main extends Game {
             name = fileString2.split(" ")[0];
         }
         whichSc = 0;
-        fileString2 = Gdx.files.internal("your data.txt").readString();
+
+        FileHandle file2 = Gdx.files.local("your data.txt");  // Путь: /data/data/your.package/files/data.txt
+        if (file.exists()) {// Путь: /data/data/your.package/files/data.txt
+            fileString2 =file2.readString();}
+        else{
+            FileHandle file23 = Gdx.files.local("your_data.txt");  // Лучше без пробелов
+            file23.writeString("", false);
+            fileString2 = "";
+        }
         System.out.println(fileString2);
 
         if (fileString2.isEmpty()){

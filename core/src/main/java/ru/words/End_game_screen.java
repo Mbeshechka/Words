@@ -2,6 +2,7 @@ package ru.words;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -88,11 +89,12 @@ public class End_game_screen implements  Screen{
         }
         a++;
         if (a==1){
+//            Gdx.files.internal("your data.txt").writeString(main.name + " 0", false); // local - для файлов в приватной директории приложения
 
-            try (FileWriter writer = new FileWriter("your data.txt", false)) {  // false - перезапись файла
-                writer.write(main.name+" "+main.score);
-            } catch (IOException e) {
-            }
+
+            FileHandle file = Gdx.files.local("your data.txt");  // Путь: /data/data/your.package/files/data.txt
+            file.writeString(main.name+" "+main.score,false);
+
             main.led.LoadDB2();
 
         }
