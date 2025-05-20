@@ -211,7 +211,6 @@ public class fourth_Screen implements  Screen{
                         dict.put(String.valueOf(myList.get(i).charAt(j)),
                             dict.get(String.valueOf(myList.get(i).charAt(j)))-1) ;
                         img = "green.png";
-                        System.out.println(String.valueOf(myList.get(i).charAt(j)));
                         book = new Texture(img);
                         batch.draw(book,200 + 100 * j,1400 - 100 * (i),100,100);
 

@@ -56,6 +56,9 @@ public class LeaderBoard implements  Screen{
 
                 synchronized (db) {
                     db = response.body();
+                    if (db == null){
+                        db = new ArrayList<>();
+                    }
                     SortDB();
                     //PrintDB();
                     synchronized (db) {
@@ -103,8 +106,9 @@ public class LeaderBoard implements  Screen{
                 if (response.isSuccessful()){
                 synchronized (db) {
                     db = response.body();
-                    print(String.valueOf(db.size()),0,0,100,100,batch);
-                    SortDB();
+                    if (db == null){
+                        db = new ArrayList<>();
+                    }SortDB();
                     //PrintDB();
                     synchronized (db) {
                         if (db.size() > 10) {
